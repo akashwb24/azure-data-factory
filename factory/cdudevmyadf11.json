@@ -1,0 +1,9 @@
+{
+	"name": "cdudevmyadf11",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "3463e4ee-6041-41d2-95da-bf9533c332d3",
+		"tenantId": "8e7d2f0b-6250-42bc-b1cd-9d6df9c73de4"
+	}
+}
