@@ -1,0 +1,19 @@
+{
+	"name": "ds_delete",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_ADLS",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "2021.csv",
+				"folderPath": "Data",
+				"fileSystem": "mycontainer"
+			}
+		}
+	}
+}
