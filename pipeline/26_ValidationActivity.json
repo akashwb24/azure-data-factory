@@ -1,0 +1,22 @@
+{
+	"name": "26_ValidationActivity",
+	"properties": {
+		"activities": [
+			{
+				"name": "Validation1",
+				"type": "Validation",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"dataset": {
+						"referenceName": "ds_csvOrders",
+						"type": "DatasetReference"
+					},
+					"timeout": "0.00:00:20",
+					"sleep": 10
+				}
+			}
+		],
+		"annotations": []
+	}
+}
