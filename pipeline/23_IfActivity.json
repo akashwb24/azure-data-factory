@@ -1,0 +1,61 @@
+{
+	"name": "23_IfActivity",
+	"properties": {
+		"activities": [
+			{
+				"name": "If Condition1",
+				"type": "IfCondition",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"expression": {
+						"value": "@equals(variables('x'),10)",
+						"type": "Expression"
+					},
+					"ifFalseActivities": [
+						{
+							"name": "Set variable2",
+							"type": "SetVariable",
+							"dependsOn": [],
+							"policy": {
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "result",
+								"value": "no"
+							}
+						}
+					],
+					"ifTrueActivities": [
+						{
+							"name": "Set variable1",
+							"type": "SetVariable",
+							"dependsOn": [],
+							"policy": {
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "result",
+								"value": "yes"
+							}
+						}
+					]
+				}
+			}
+		],
+		"variables": {
+			"x": {
+				"type": "Integer",
+				"defaultValue": 100
+			},
+			"result": {
+				"type": "String"
+			}
+		},
+		"annotations": []
+	}
+}
