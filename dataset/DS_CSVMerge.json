@@ -1,5 +1,5 @@
 {
-	"name": "DS_CSVYears",
+	"name": "DS_CSVMerge",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "LS_ADLS",
@@ -10,7 +10,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"folderPath": "YearWise",
+				"folderPath": "CB/Output",
 				"fileSystem": "mycontainer"
 			},
 			"columnDelimiter": ",",
