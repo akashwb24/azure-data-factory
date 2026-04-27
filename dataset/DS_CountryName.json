@@ -1,0 +1,53 @@
+{
+	"name": "DS_CountryName",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_ADLS",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"ParamCountry": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@dataset().ParamCountry",
+					"type": "Expression"
+				},
+				"folderPath": "Country",
+				"fileSystem": "mycontainer"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "OrderDate",
+				"type": "String"
+			},
+			{
+				"name": "ProductKey",
+				"type": "String"
+			},
+			{
+				"name": "EnglishProductName",
+				"type": "String"
+			},
+			{
+				"name": "SalesAmount",
+				"type": "String"
+			},
+			{
+				"name": "TaxAmt",
+				"type": "String"
+			}
+		]
+	}
+}
