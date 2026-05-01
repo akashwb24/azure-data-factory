@@ -1,5 +1,5 @@
 {
-	"name": "pplRegions_40",
+	"name": "40_1_pplRegions",
 	"properties": {
 		"activities": [
 			{
@@ -30,6 +30,7 @@
 					],
 					"storeSettings": {
 						"type": "AzureBlobFSReadSettings",
+						"recursive": true,
 						"enablePartitionDiscovery": false
 					},
 					"formatSettings": {
