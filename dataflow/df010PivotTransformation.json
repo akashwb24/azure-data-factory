@@ -1,0 +1,59 @@
+{
+	"name": "df010PivotTransformation",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "DSCSV",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "dssqlpivot",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
+			"transformations": [
+				{
+					"name": "pivotColumns"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          OrderDate as string 'dd-MM-yyyy',",
+				"          ProductKey as string 'short',",
+				"          Country as string,",
+				"          EnglishProductName as string,",
+				"          SalesAmount as string 'double',",
+				"          TaxAmt as string 'double'",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> source1",
+				"source1 pivot(groupBy(EnglishProductName),",
+				"     pivotBy(Country, ['India', 'France']),",
+				"     {} = sum(SalesAmount),",
+				"     columnNaming: '$N$V',",
+				"     lateral: true) ~> pivotColumns",
+				"pivotColumns sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     format: 'table',",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError') ~> sink1"
+			]
+		}
+	}
+}
