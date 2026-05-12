@@ -1,0 +1,32 @@
+{
+	"name": "DSRankCSV",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_ADLS",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "Rank.csv",
+				"fileSystem": "mycontainer"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "EnglishProductName",
+				"type": "String"
+			},
+			{
+				"name": "SalesAmount",
+				"type": "String"
+			}
+		]
+	}
+}
