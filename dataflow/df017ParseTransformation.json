@@ -1,0 +1,75 @@
+{
+	"name": "df017ParseTransformation",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "DS_ExcelOrdersDetails",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "DS_Parse",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
+			"transformations": [
+				{
+					"name": "parse1"
+				},
+				{
+					"name": "parse2"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          OrderId as string,",
+				"          OrderDate as string,",
+				"          OrderDetails as string,",
+				"          BatchDetails as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> source1",
+				"source1 parse(OrdDet = OrderDetails ? (Item as string,",
+				"          Qty as integer,",
+				"          Price as integer),",
+				"     format: 'delimited',",
+				"     columnNamesAsHeader: false,",
+				"     columnDelimiter: '|',",
+				"     nullValue: '') ~> parse1",
+				"parse1 parse(BatchDet = BatchDetails ? (BatchId as integer,",
+				"          site as string),",
+				"     format: 'json',",
+				"     documentForm: 'arrayOfDocuments') ~> parse2",
+				"parse2 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     format: 'table',",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError',",
+				"     mapColumn(",
+				"          OrderId,",
+				"          OrderDate,",
+				"          Item = OrdDet.Item,",
+				"          Qty = OrdDet.Qty,",
+				"          Price = OrdDet.Price,",
+				"          BatchId = BatchDet.BatchId,",
+				"          Site = BatchDet.site",
+				"     )) ~> sink1"
+			]
+		}
+	}
+}
