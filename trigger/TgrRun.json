@@ -1,0 +1,25 @@
+{
+	"name": "TgrRun",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "8_SetVariableActivity",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Minute",
+				"interval": 1,
+				"startTime": "2026-05-14T01:30:00",
+				"endTime": "2026-05-15T19:50:00",
+				"timeZone": "India Standard Time"
+			}
+		}
+	}
+}
